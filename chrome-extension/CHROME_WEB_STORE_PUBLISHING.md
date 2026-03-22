@@ -26,13 +26,15 @@ In [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/dev
 
 1. Click **Add new item**.
 2. Upload `exports/jtmetrics-github-extension.zip`.
-3. Fill listing fields:
+3. In the Privacy section, set a direct privacy policy URL (not a homepage), for example:
+    - `https://<your-github-username>.github.io/<your-repository>/privacy-policy.html`
+4. Fill listing fields:
     - Name
     - Short description
     - Detailed description
     - Screenshots
     - Category
-4. Provide a support URL (or repository URL).
+5. Provide a support URL (or repository URL).
 
 ## 4. Privacy and permissions disclosure
 
@@ -48,6 +50,7 @@ Data handling notes for listing:
 - Optional GitHub token is stored in Chrome `storage.sync`.
 - No external backend required.
 - No user metrics data is sent to your servers by design.
+- A direct policy page is available at `docs/privacy-policy.html` for GitHub Pages hosting.
 
 ## 5. Publish
 

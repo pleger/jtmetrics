@@ -1,6 +1,6 @@
 # JTMetrics Chrome Extension (GitHub)
 
-This extension adds a `JTMetrics` tab next to `Settings` in GitHub repository pages.
+This extension adds a `JTMetrics` tab in the GitHub repository navigation bar.
 
 From that tab, users can:
 

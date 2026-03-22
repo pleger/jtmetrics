@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JTMetrics for GitHub - Privacy Policy</title>
+  <style>
+    :root {
+      --fg: #1f2328;
+      --muted: #57606a;
+      --border: #d0d7de;
+      --bg: #ffffff;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    main {
+      max-width: 840px;
+      margin: 32px auto;
+      padding: 0 20px 40px;
+    }
+
+    h1, h2 {
+      line-height: 1.25;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    h2 {
+      margin-top: 28px;
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    p, li {
+      font-size: 16px;
+    }
+
+    .meta {
+      color: var(--muted);
+      margin-top: 0;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+
+    code {
+      background: #f6f8fa;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0 5px;
+      font-size: 0.92em;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Privacy Policy</h1>
+    <p class="meta">
+      Product: <strong>JTMetrics for GitHub</strong><br>
+      Last updated: <strong>March 22, 2026</strong>
+    </p>
+
+    <p>
+      This Privacy Policy explains how the JTMetrics for GitHub Chrome extension handles information.
+    </p>
+
+    <h2>What the extension does</h2>
+    <p>
+      The extension analyzes JavaScript/TypeScript source files from the GitHub repository page you open, computes metrics locally in your browser, and allows you to download a JSON results file.
+    </p>
+
+    <h2>Data we process</h2>
+    <ul>
+      <li>Repository metadata and file contents requested from <code>github.com</code> and <code>api.github.com</code> for the repository you choose to analyze.</li>
+      <li>The source path you type in the extension UI (for example, <code>src</code>).</li>
+      <li>An optional GitHub token if you choose to provide one in extension options.</li>
+    </ul>
+
+    <h2>How data is used</h2>
+    <ul>
+      <li>Only to fetch repository files, compute metrics, and generate downloadable JSON output for you.</li>
+      <li>The extension does not use your data for advertising, profiling, or analytics.</li>
+    </ul>
+
+    <h2>Storage and retention</h2>
+    <ul>
+      <li>The optional GitHub token is stored in Chrome extension storage (<code>chrome.storage.sync</code>).</li>
+      <li>The source path is stored locally in browser storage per repository for convenience.</li>
+      <li>Metric computation runs client-side. No project metrics are sent to our external servers.</li>
+    </ul>
+
+    <h2>Data sharing</h2>
+    <p>
+      We do not sell or transfer your data to third parties. Network requests are only made to GitHub endpoints required to read repository content.
+    </p>
+
+    <h2>Your controls</h2>
+    <ul>
+      <li>You can remove the optional GitHub token at any time from extension options.</li>
+      <li>You can clear browser extension storage to remove saved configuration values.</li>
+      <li>You can uninstall the extension at any time.</li>
+    </ul>
+
+    <h2>Contact</h2>
+    <p>
+      Support repository: <a href="https://github.com/pleger/jtmetrics">https://github.com/pleger/jtmetrics</a>
+    </p>
+  </main>
+</body>
+</html>

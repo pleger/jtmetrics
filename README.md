@@ -53,9 +53,13 @@ Quick start:
 
 1. Load `chrome-extension/` in `chrome://extensions` (Developer mode → Load unpacked).
 2. (Optional) Set a GitHub token in extension options for private repos and higher rate limits.
-3. Open any GitHub repository page and click the **JTMetrics** tab near **Settings**.
+3. Open any GitHub repository page and click the **JTMetrics** tab in the repository navigation bar.
 4. Enter source path and click **Calculate metrics**.
 5. Download the JSON result.
+
+Chrome Web Store privacy policy page:
+
+- `docs/privacy-policy.html`
 
 
 ## Parameters
