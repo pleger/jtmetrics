@@ -1,4 +1,9 @@
-import { extname as getExt } from 'path'
+const getExt = (filePath) => {
+  const fileIndex = filePath.lastIndexOf('/')
+  const dotIndex = filePath.lastIndexOf('.')
+  if (dotIndex <= fileIndex) return ''
+  return filePath.slice(dotIndex).toLowerCase()
+}
 
 const state = {
   name: 'Function Coupling',

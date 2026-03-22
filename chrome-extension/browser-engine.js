@@ -437,31 +437,21 @@
     return { state, visitors, postProcessing }
   }
 
-  function transformMetricSource (metricId, source) {
-    let transformed = source
-      .replace(/^\s*import\s+[^;]+;?\s*$/gm, '')
-      .replace(/^\s*export\s*\{\s*state\s*,\s*visitors\s*,\s*postProcessing\s*\}\s*;?\s*$/m, 'return { state, visitors, postProcessing }')
-
-    if (metricId === 'function-coupling') {
-      transformed = `const getExt = (p) => { const i = p.lastIndexOf('.'); return i >= 0 ? p.slice(i) : ''; }\n${transformed}`
-    }
-
-    return transformed
-  }
-
-  async function loadMetricFromSource (metricId) {
+  async function loadMetricFromSource (metricId, runToken) {
     const fileName = METRIC_FILES[metricId]
-    const url = chrome.runtime.getURL(`metric-src/${fileName}`)
-    const response = await fetch(url)
-    if (!response.ok) throw new Error(`Cannot load metric source: ${fileName}`)
-
-    const source = await response.text()
-    const transformed = transformMetricSource(metricId, source)
-    const factory = new Function(transformed)
-    return factory()
+    const moduleUrl = `${chrome.runtime.getURL(`metric-src/${fileName}`)}?run=${encodeURIComponent(runToken)}`
+    const metricModule = await import(moduleUrl)
+    if (!metricModule || !metricModule.state || !metricModule.visitors || !metricModule.postProcessing) {
+      throw new Error(`Invalid metric module exports: ${fileName}`)
+    }
+    return {
+      state: metricModule.state,
+      visitors: metricModule.visitors,
+      postProcessing: metricModule.postProcessing
+    }
   }
 
-  async function loadMetricObjects (context) {
+  async function loadMetricObjects (context, runToken) {
     const metrics = []
 
     for (const metricId of METRIC_IDS) {
@@ -478,7 +468,7 @@
         continue
       }
 
-      metrics.push(await loadMetricFromSource(metricId))
+      metrics.push(await loadMetricFromSource(metricId, runToken))
     }
 
     return metrics
@@ -631,7 +621,8 @@
 
     const asts = parseAstsFromFiles(files, fileContentByPseudo, logger)
     const context = { pseudoRoot, allRepoFilesSet, fileContentByPseudo }
-    const metricObjects = await loadMetricObjects(context)
+    const runToken = `${Date.now()}-${Math.random().toString(36).slice(2)}`
+    const metricObjects = await loadMetricObjects(context, runToken)
     const sortedMetrics = kahnSort(metricObjects, logger)
 
     const resultMap = {}
