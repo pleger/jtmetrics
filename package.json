@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "SKIP_IGNORE=true node --no-warnings=ExperimentalWarning --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "format": "standard --fix"
+    "format": "standard --fix",
+    "bridge:start": "node tools/github-metrics-bridge/server.js"
   },
   "repository": {
     "type": "git",
@@ -36,7 +37,9 @@
   "homepage": "https://github.com/danielzazzali/JTMetrics#readme",
   "dependencies": {
     "@babel/parser": "^7.25.6",
-    "@babel/traverse": "^7.25.6"
+    "@babel/standalone": "^7.29.2",
+    "@babel/traverse": "^7.25.6",
+    "adm-zip": "^0.5.16"
   },
   "devDependencies": {
     "@jest/globals": "^30.0.5",

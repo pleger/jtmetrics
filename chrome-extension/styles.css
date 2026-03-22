@@ -1,0 +1,99 @@
+#jtmetrics-tab-link {
+  cursor: pointer;
+}
+
+#jtmetrics-tab-link .jtmetrics-tab-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.jtmetrics-tab-icon {
+  display: inline-block;
+  border-radius: 3px;
+}
+
+.jtmetrics-panel {
+  margin: 16px 0 24px;
+  padding: 0 16px;
+}
+
+.jtmetrics-card {
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 16px;
+  max-width: 720px;
+  box-shadow: 0 1px 2px rgba(27, 31, 36, 0.08);
+}
+
+.jtmetrics-card h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.jtmetrics-card p {
+  margin: 8px 0;
+}
+
+.jtmetrics-card label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 600;
+}
+
+.jtmetrics-card input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+.jtmetrics-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.jtmetrics-actions button {
+  background: #2da44e;
+  border: 1px solid rgba(27, 31, 36, 0.15);
+  color: #ffffff;
+  padding: 7px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.jtmetrics-actions button[hidden] {
+  display: none;
+}
+
+.jtmetrics-actions button[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+#jtmetrics-download-btn {
+  background: #0969da;
+}
+
+#jtmetrics-status[data-type="error"] {
+  color: #cf222e;
+}
+
+#jtmetrics-status[data-type="success"] {
+  color: #1a7f37;
+}
+
+#jtmetrics-status[data-type="info"] {
+  color: #57606a;
+}
+
+.jtmetrics-note {
+  font-size: 12px;
+  color: #57606a;
+}

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Plugin Loading Sequence</title>
+  <desc id="desc">Sequence diagram showing the client, facade, plugin loader, and metric plugin during plugin discovery, import, and validation.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2937"/>
+    </marker>
+    <style>
+      .title { font: 700 24px Arial, Helvetica, sans-serif; fill: #111827; }
+      .label { font: 600 16px Arial, Helvetica, sans-serif; fill: #111827; }
+      .small { font: 500 13px Arial, Helvetica, sans-serif; fill: #374151; }
+      .box { fill: #ffffff; stroke: #1f2937; stroke-width: 2; rx: 10; ry: 10; }
+      .life { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 7 7; }
+      .msg { stroke: #1f2937; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .ret { stroke: #475569; stroke-width: 2; stroke-dasharray: 8 6; fill: none; marker-end: url(#arrow); }
+      .loop { fill: #f8fafc; stroke: #64748b; stroke-width: 1.5; stroke-dasharray: 6 6; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="520" fill="#ffffff"/>
+  <text x="600" y="38" text-anchor="middle" class="title">Sequence of Plugin Loading and Validation</text>
+
+  <rect x="80" y="70" width="150" height="56" class="box"/>
+  <text x="155" y="103" text-anchor="middle" class="label">Client</text>
+
+  <rect x="340" y="70" width="180" height="56" class="box"/>
+  <text x="430" y="103" text-anchor="middle" class="label">Facade</text>
+
+  <rect x="620" y="70" width="190" height="56" class="box"/>
+  <text x="715" y="103" text-anchor="middle" class="label">Plugin Loader</text>
+
+  <rect x="940" y="70" width="190" height="56" class="box"/>
+  <text x="1035" y="103" text-anchor="middle" class="label">Metric Plugin</text>
+
+  <line x1="155" y1="126" x2="155" y2="470" class="life"/>
+  <line x1="430" y1="126" x2="430" y2="470" class="life"/>
+  <line x1="715" y1="126" x2="715" y2="470" class="life"/>
+  <line x1="1035" y1="126" x2="1035" y2="470" class="life"/>
+
+  <line x1="155" y1="170" x2="430" y2="170" class="msg"/>
+  <text x="292" y="160" text-anchor="middle" class="small">1. request analysis</text>
+
+  <line x1="430" y1="230" x2="715" y2="230" class="msg"/>
+  <text x="572" y="220" text-anchor="middle" class="small">2. discover plugin files</text>
+
+  <rect x="650" y="265" width="450" height="120" class="loop"/>
+  <text x="670" y="288" class="small">for each metric module</text>
+
+  <line x1="715" y1="320" x2="1035" y2="320" class="msg"/>
+  <text x="875" y="309" text-anchor="middle" class="small">3. import plugin</text>
+
+  <line x1="715" y1="355" x2="1035" y2="355" class="msg"/>
+  <text x="875" y="344" text-anchor="middle" class="small">4. validate plugin contract</text>
+
+  <line x1="715" y1="430" x2="430" y2="430" class="ret"/>
+  <text x="572" y="420" text-anchor="middle" class="small">5. valid metric plugins</text>
+
+</svg>

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="700" viewBox="0 0 1400 700" role="img" aria-labelledby="title desc">
+  <title id="title">Dependency-Aware Metric Execution Sequence</title>
+  <desc id="desc">Sequence diagram showing the facade, metric executor, dependency sorter, result registry, metric plugin, and logger during dependency-aware execution.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2937"/>
+    </marker>
+    <style>
+      .title { font: 700 24px Arial, Helvetica, sans-serif; fill: #111827; }
+      .label { font: 600 16px Arial, Helvetica, sans-serif; fill: #111827; }
+      .small { font: 500 13px Arial, Helvetica, sans-serif; fill: #374151; }
+      .box { fill: #ffffff; stroke: #1f2937; stroke-width: 2; rx: 10; ry: 10; }
+      .life { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 7 7; }
+      .msg { stroke: #1f2937; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .ret { stroke: #475569; stroke-width: 2; stroke-dasharray: 8 6; fill: none; marker-end: url(#arrow); }
+      .loop { fill: #f8fafc; stroke: #64748b; stroke-width: 1.5; stroke-dasharray: 6 6; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="700" fill="#ffffff"/>
+  <text x="700" y="38" text-anchor="middle" class="title">Sequence of Dependency-Aware Metric Execution</text>
+
+  <rect x="60" y="70" width="160" height="56" class="box"/>
+  <text x="140" y="103" text-anchor="middle" class="label">Facade</text>
+
+  <rect x="300" y="70" width="190" height="56" class="box"/>
+  <text x="395" y="103" text-anchor="middle" class="label">Metric Executor</text>
+
+  <rect x="560" y="70" width="200" height="56" class="box"/>
+  <text x="660" y="103" text-anchor="middle" class="label">Dependency Sorter</text>
+
+  <rect x="850" y="70" width="190" height="56" class="box"/>
+  <text x="945" y="103" text-anchor="middle" class="label">Result Registry</text>
+
+  <rect x="1120" y="70" width="170" height="56" class="box"/>
+  <text x="1205" y="103" text-anchor="middle" class="label">Metric Plugin</text>
+
+  <rect x="1120" y="610" width="170" height="56" class="box"/>
+  <text x="1205" y="643" text-anchor="middle" class="label">Logger</text>
+
+  <line x1="140" y1="126" x2="140" y2="620" class="life"/>
+  <line x1="395" y1="126" x2="395" y2="620" class="life"/>
+  <line x1="660" y1="126" x2="660" y2="620" class="life"/>
+  <line x1="945" y1="126" x2="945" y2="620" class="life"/>
+  <line x1="1205" y1="126" x2="1205" y2="620" class="life"/>
+
+  <line x1="140" y1="170" x2="395" y2="170" class="msg"/>
+  <text x="267" y="160" text-anchor="middle" class="small">1. execute(metrics, ASTs)</text>
+
+  <line x1="395" y1="230" x2="660" y2="230" class="msg"/>
+  <text x="527" y="220" text-anchor="middle" class="small">2. sort by dependencies</text>
+
+  <line x1="660" y1="270" x2="395" y2="270" class="ret"/>
+  <text x="527" y="260" text-anchor="middle" class="small">3. ordered metrics</text>
+
+  <rect x="340" y="305" width="930" height="210" class="loop"/>
+  <text x="360" y="328" class="small">for each metric in topological order</text>
+
+  <line x1="395" y1="365" x2="945" y2="365" class="msg"/>
+  <text x="670" y="355" text-anchor="middle" class="small">4. read prerequisite results</text>
+
+  <line x1="395" y1="410" x2="1205" y2="410" class="msg"/>
+  <text x="800" y="400" text-anchor="middle" class="small">5. inject dependencies and apply visitors</text>
+
+  <line x1="1205" y1="455" x2="395" y2="455" class="ret"/>
+  <text x="800" y="445" text-anchor="middle" class="small">6. metric result</text>
+
+  <line x1="395" y1="495" x2="945" y2="495" class="msg"/>
+  <text x="670" y="485" text-anchor="middle" class="small">7. store result</text>
+
+  <rect x="340" y="545" width="930" height="50" class="loop"/>
+  <text x="360" y="576" class="small">post-processing phase: finalize metric state</text>
+
+  <line x1="395" y1="638" x2="1205" y2="638" class="msg"/>
+  <text x="800" y="628" text-anchor="middle" class="small">8. collect errors and finalize output</text>
+
+</svg>

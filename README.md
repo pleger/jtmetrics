@@ -37,6 +37,26 @@ const results = await calculateMetrics({
 console.log(results)
 ```
 
+## GitHub Chrome Extension
+
+This repository includes a Chrome extension that adds a **JTMetrics** tab on GitHub repository pages, allowing users to:
+
+- Enter a JavaScript/TypeScript source path inside the repository.
+- Run all available JTMetrics metrics.
+- Download JSON results.
+
+Files:
+
+- Extension: `chrome-extension/`
+
+Quick start:
+
+1. Load `chrome-extension/` in `chrome://extensions` (Developer mode → Load unpacked).
+2. (Optional) Set a GitHub token in extension options for private repos and higher rate limits.
+3. Open any GitHub repository page and click the **JTMetrics** tab near **Settings**.
+4. Enter source path and click **Calculate metrics**.
+5. Download the JSON result.
+
 
 ## Parameters
 
@@ -64,11 +84,18 @@ The library comes with the following built-in metrics. Click each link for detai
 | Metric ID            | Name                   | Description                                                            | Documentation                                             |
 | -------------------- | ---------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------- |
 | `files`              | **Files**              | Identifies all source files in the repository.                         | [files.doc.md](./docs/files.doc.md)                       |
+| `lines-per-file`     | **Lines Per File**     | Counts total, non-empty, and blank lines per source file.              | [linesPerFile.doc.md](./docs/linesPerFile.doc.md)         |
 | `functions-per-file` | **Functions Per File** | Counts all functions declared per file.                                | [functionsPerFile.doc.md](./docs/functionsPerFile.doc.md) |
+| `function-length`    | **Function Length**    | Counts line spans for named functions per file.                        | [functionLength.doc.md](./docs/functionLength.doc.md)     |
+| `parameter-count`    | **Parameter Count**    | Counts declared parameters for named functions per file.               | [parameterCount.doc.md](./docs/parameterCount.doc.md)     |
 | `function-coupling`  | **Function Coupling**  | Measures **fan-in** and **fan-out** at the function level.             | [functionCoupling.doc.md](./docs/functionCoupling.doc.md) |
+| `function-dependency-summary` | **Function Dependency Summary** | Aggregates function-level dependency totals from fan-in/fan-out. | [functionDependencySummary.doc.md](./docs/functionDependencySummary.doc.md) |
 | `classes-per-file`   | **Classes Per File**   | Lists all classes and their methods/properties per file.               | [classesPerFile.doc.md](./docs/classesPerFile.doc.md)     |
 | `class-coupling`     | **Class Coupling**     | Measures **fan-in** and **fan-out** between class methods.             | [classCoupling.doc.md](./docs/classCoupling.doc.md)       |
+| `class-dependency-summary` | **Class Dependency Summary** | Aggregates class-level dependency totals from method fan-in/fan-out. | [classDependencySummary.doc.md](./docs/classDependencySummary.doc.md) |
 | `file-coupling`      | **File Coupling**      | Measures **file-level dependencies** (imports/require) and dependents. | [fileCoupling.doc.md](./docs/fileCoupling.doc.md)         |
+| `import-instability` | **Import Instability** | Computes instability from incoming/outgoing file dependencies.          | [importInstability.doc.md](./docs/importInstability.doc.md) |
+| `dependency-centrality` | **Dependency Centrality** | Computes in/out degree centrality in the file dependency graph.     | [dependencyCentrality.doc.md](./docs/dependencyCentrality.doc.md) |
 | `instance-mapper`    | **Instance Mapper**    | Maps instances to their class types for resolving method calls.        | [instanceMapper.doc.md](./docs/instanceMapper.doc.md)     |
 
 
