@@ -437,21 +437,22 @@
     return { state, visitors, postProcessing }
   }
 
-  async function loadMetricFromSource (metricId, runToken) {
+  function loadMetricFromFactory (metricId) {
     const fileName = METRIC_FILES[metricId]
-    const moduleUrl = `${chrome.runtime.getURL(`metric-src/${fileName}`)}?run=${encodeURIComponent(runToken)}`
-    const metricModule = await import(moduleUrl)
-    if (!metricModule || !metricModule.state || !metricModule.visitors || !metricModule.postProcessing) {
-      throw new Error(`Invalid metric module exports: ${fileName}`)
+    const factory = self.__JTMETRICS_METRIC_FACTORIES?.[metricId]
+    if (typeof factory !== 'function') {
+      throw new Error(`Metric factory not found: ${fileName}`)
     }
-    return {
-      state: metricModule.state,
-      visitors: metricModule.visitors,
-      postProcessing: metricModule.postProcessing
+
+    const metric = factory()
+    if (!metric || !metric.state || !metric.visitors || !metric.postProcessing) {
+      throw new Error(`Invalid metric object from factory: ${fileName}`)
     }
+
+    return metric
   }
 
-  async function loadMetricObjects (context, runToken) {
+  function loadMetricObjects (context) {
     const metrics = []
 
     for (const metricId of METRIC_IDS) {
@@ -468,7 +469,7 @@
         continue
       }
 
-      metrics.push(await loadMetricFromSource(metricId, runToken))
+      metrics.push(loadMetricFromFactory(metricId))
     }
 
     return metrics
@@ -621,8 +622,7 @@
 
     const asts = parseAstsFromFiles(files, fileContentByPseudo, logger)
     const context = { pseudoRoot, allRepoFilesSet, fileContentByPseudo }
-    const runToken = `${Date.now()}-${Math.random().toString(36).slice(2)}`
-    const metricObjects = await loadMetricObjects(context, runToken)
+    const metricObjects = loadMetricObjects(context)
     const sortedMetrics = kahnSort(metricObjects, logger)
 
     const resultMap = {}

@@ -1,4 +1,4 @@
-importScripts('./vendor/babel.min.js', './browser-engine.js')
+importScripts('./vendor/babel.min.js', './metric-factories.js', './browser-engine.js')
 
 async function getConfig () {
   const stored = await chrome.storage.sync.get(['jtmetricsGitHubToken'])

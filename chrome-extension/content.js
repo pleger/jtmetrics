@@ -5,6 +5,7 @@ const JT_PATH_ID = 'jtmetrics-source-path'
 const JT_CALCULATE_ID = 'jtmetrics-calculate-btn'
 const JT_DOWNLOAD_ID = 'jtmetrics-download-btn'
 const JT_ICON_PATH = 'icons/icon16.png'
+const JT_VERSION = chrome.runtime.getManifest().version
 
 let latestResult = null
 let latestRepoContext = null
@@ -281,7 +282,7 @@ function buildPanelHtml (repoContext) {
   const defaultPath = loadPathForRepo(repoContext) || 'src'
   return `
     <div class="jtmetrics-card">
-      <h2>JTMetrics</h2>
+      <h2>JTMetrics <span class="jtmetrics-version">v${JT_VERSION}</span></h2>
       <p>Enter the JavaScript/TypeScript source path inside this repository, then run all available metrics.</p>
       <label for="${JT_PATH_ID}">Source path</label>
       <input id="${JT_PATH_ID}" type="text" value="${defaultPath}" placeholder="src" />
